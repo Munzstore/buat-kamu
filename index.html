@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mau Jadi Pacarku?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffcccb; /* Latar belakang pink */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0; /* Menghilangkan margin default */
+            padding: 20px; /* Menambahkan padding */
+        }
+        h1 {
+            font-size: 2em; /* Ukuran font yang lebih kecil untuk mobile */
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1em; /* Ukuran font yang lebih kecil untuk mobile */
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            width: 80%; /* Lebar tombol 80% dari lebar layar */
+            max-width: 300px; /* Maksimal lebar tombol */
+        }
+        .yes {
+            background-color: #ff69b4; /* Warna tombol "Iya mauu!!!" */
+            color: white;
+        }
+        .no {
+            background-color: #ff4500; /* Warna tombol "Ngk mau ah" */
+            color: white;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .creator {
+            margin-top: 20px; /* Jarak antara tombol dan nama pembuat */
+            font-size: 1em; /* Ukuran font untuk nama pembuat */
+            color: #333; /* Warna teks untuk nama pembuat */
+        }
+        .message {
+            margin-top: 20px; /* Jarak antara tombol dan pesan */
+            font-size: 1.2em; /* Ukuran font untuk pesan */
+            color: #ff4500; /* Warna teks untuk pesan */
+            display: none; /* Sembunyikan pesan secara default */
+        }
+    </style>
+</head>
+<body>
+    <h1>Mau jadi pacarku?</h1>
+    <button class="yes" onclick="location.href='iya.html'">Iya mauu!!!</button>
+    <button class="no" onclick="moveButton()">Ngk mau ah</button>
+    <div class="creator">Dibuat oleh Mubartyxxx</div> <!-- Menambahkan nama pembuat -->
+    <div class="message" id="message">Tekan Iya aja, susah banget sihh!</div> <!-- Pesan yang akan ditampilkan -->
+
+    <script>
+        let noButtonClickCount = 0; // Menghitung jumlah klik pada tombol "Ngk mau ah"
+
+        function moveButton() {
+            noButtonClickCount++; // Tambah hitungan setiap kali tombol "Ngk mau ah" ditekan
+
+            const noButton = document.querySelector('.no');
+            const yesButton = document.querySelector('.yes');
+            const message = document.getElementById('message');
+
+            // Mengambil posisi tombol "Iya mauu!!!"
+            const yesButtonRect = yesButton.getBoundingClientRect();
+            const noButtonRect = noButton.getBoundingClientRect();
+
+            // Menghitung posisi baru untuk tombol "Ngk mau ah"
+            const newX = Math.random() * (window.innerWidth - noButtonRect.width);
+            const newY = Math.random() * (window.innerHeight - noButtonRect.height - 100); // Mengurangi tinggi untuk menghindari tombol keluar dari layar
+
+            // Memindahkan tombol "Ngk mau ah" ke posisi baru
+            noButton.style.position = 'absolute';
+            noButton.style.left = newX + 'px';
+            noButton.style.top = newY + 'px';
+
+            // Jika tombol "Ngk mau ah" ditekan 3 kali, tampilkan pesan
+            if (noButtonClickCount >= 3) {
+                message.style.display = 'block'; // Tampilkan pesan
+            }
+        }
+    </script>
+</body>
+</html>
